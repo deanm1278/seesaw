@@ -48,6 +48,7 @@ enum {
 	AO_DAP,
 	AO_NEOPIXEL,
 	AO_KEYPAD,
+	AO_PEDAL,
 };
 
 // Higher value corresponds to higher priority.
@@ -68,6 +69,7 @@ enum
 	PRIO_DAP		= 21,
 	PRIO_NEOPIXEL	= 20,
 	PRIO_KEYPAD		= 18,
+	PRIO_PEDAL		= 22,
 };
 
 

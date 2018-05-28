@@ -9,6 +9,11 @@
 #define CONFIG_NO_ACTIVITY_LED
 #define CONFIG_NO_EEPROM
 
+#define USB_UART_DIRECT
+#define CORE_CLKOUT
+#define BFIN_HWRST_PIN 23
+#define BFIN_CLK_PIN 27
+
 //* ============== POOL SIZES =================== *//
 #define	EVT_SIZE_SMALL 16
 #define EVT_SIZE_MEDIUM 32
