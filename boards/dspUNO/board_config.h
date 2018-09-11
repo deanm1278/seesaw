@@ -55,7 +55,7 @@
 #define CONFIG_SPI_SLAVE 0
 
 //* ============== SERCOM =================== *//
-#define CONFIG_SERCOM0 1 //TODO: turn this on
+#define CONFIG_SERCOM0 1
 #define CONFIG_SERCOM1 0
 #define CONFIG_SERCOM2 0
 
@@ -73,7 +73,7 @@
 #define CONFIG_NEOPIXEL_BUF_MAX 64
 
 //* =========== PEDAL ================ *//
-#define CONFIG_PEDAL 1
+#define CONFIG_PEDAL 0
 #define CONFIG_PEDAL_SERCOM SERCOM2
 #define CONFIG_PEDAL_HANDLER SERCOM2_Handler
 #define CONFIG_PEDAL_IRQn SERCOM2_IRQn
