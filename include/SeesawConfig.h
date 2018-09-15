@@ -592,6 +592,8 @@
 
 #ifndef CONFIG_KEYPAD_COL3_PIN
 #define CONFIG_KEYPAD_COL3_PIN 0
+#endif
+
 //* =========== PEDAL ================ *//
 #ifndef CONFIG_PEDAL
 #define CONFIG_PEDAL 0
