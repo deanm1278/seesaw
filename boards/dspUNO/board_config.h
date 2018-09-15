@@ -53,11 +53,19 @@
 
 //* ============== I2C SLAVE =================== *//
 #define CONFIG_I2C_SLAVE 1
+<<<<<<< HEAD
 #define CONFIG_I2C_SLAVE_SERCOM SERCOM3
 #define CONFIG_I2C_SLAVE_HANDLER SERCOM3_Handler
 #define CONFIG_I2C_SLAVE_IRQn SERCOM3_IRQn
 #define CONFIG_I2C_SLAVE_PIN_SDA 22
 #define CONFIG_I2C_SLAVE_PIN_SCL 23
+=======
+#define CONFIG_I2C_SLAVE_SERCOM SERCOM4
+#define CONFIG_I2C_SLAVE_HANDLER SERCOM4_Handler
+#define CONFIG_I2C_SLAVE_IRQn SERCOM4_IRQn
+#define CONFIG_I2C_SLAVE_PIN_SDA (32 + 8)
+#define CONFIG_I2C_SLAVE_PIN_SCL (32 + 7)
+>>>>>>> bbc4d36ec60e8abfbad582dd788aa7167d33a08b
 #define CONFIG_I2C_SLAVE_MUX 3
 
 //* ============== SPI SLAVE =================== *//
