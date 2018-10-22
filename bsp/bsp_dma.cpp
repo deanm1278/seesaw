@@ -14,21 +14,26 @@ __attribute__((__aligned__(16))) static DmacDescriptor // 128 bit alignment
   _descriptor[DMAC_CH_NUM] SECTION_DMAC_DESCRIPTOR,
   _writeback[DMAC_CH_NUM]  SECTION_DMAC_DESCRIPTOR;
 
+static bool _initialized = false;
+
 void dmac_init()
 {
     PM->AHBMASK.bit.DMAC_       = 1; // Initialize DMA clocks
     PM->APBBMASK.bit.DMAC_      = 1;
 
-    NVIC_DisableIRQ(DMAC_IRQn);
-    DMAC->CTRL.bit.DMAENABLE    = 0; // Disable DMA controller
-    while(DMAC->CTRL.bit.DMAENABLE);
-    DMAC->CTRL.bit.SWRST        = 1; // Perform software reset
+    if(!_initialized){
+        NVIC_DisableIRQ(DMAC_IRQn);
+        DMAC->CTRL.bit.DMAENABLE    = 0; // Disable DMA controller
+        while(DMAC->CTRL.bit.DMAENABLE);
+        DMAC->CTRL.bit.SWRST        = 1; // Perform software reset
 
-    // Initialize descriptor list addresses
-    DMAC->BASEADDR.bit.BASEADDR = (uint32_t)_descriptor;
-    DMAC->WRBADDR.bit.WRBADDR   = (uint32_t)_writeback;
-    memset(_descriptor, 0, sizeof(_descriptor));
-    memset(_writeback , 0, sizeof(_writeback));
+        // Initialize descriptor list addresses
+        DMAC->BASEADDR.bit.BASEADDR = (uint32_t)_descriptor;
+        DMAC->WRBADDR.bit.WRBADDR   = (uint32_t)_writeback;
+        memset(_descriptor, 0, sizeof(_descriptor));
+        memset(_writeback , 0, sizeof(_writeback));
+        _initialized = true;
+    }
 
     // Re-enable DMA controller with all priority levels
     DMAC->CTRL.reg = DMAC_CTRL_DMAENABLE | DMAC_CTRL_LVLEN(0xF);

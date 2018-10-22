@@ -16,18 +16,18 @@ static uint32_t INT1VH;      // Hot temp 2's complement of the internal 1V refer
 
 static void adc_set_defaults()
 {
-	ADC->CTRLB.reg = ADC_CTRLB_PRESCALER_DIV64 |    // Divide Clock by 64.
-					ADC_CTRLB_RESSEL_10BIT;         // 10 bits resolution as default
+  ADC->CTRLB.reg = ADC_CTRLB_PRESCALER_DIV32 |    // Divide Clock by 32.
+                   ADC_CTRLB_RESSEL_10BIT;         // 10 bits resolution as default
 
-	ADC->SAMPCTRL.reg = 0x3f;                        // Set max Sampling Time Length
+  ADC->SAMPCTRL.reg = 5;                        // Sampling Time Length
 
-	while( ADC->STATUS.bit.SYNCBUSY == 1 );          // Wait for synchronization of registers between the clock domains
+  while( ADC->STATUS.bit.SYNCBUSY == 1 );          // Wait for synchronization of registers between the clock domains
 
-	ADC->INPUTCTRL.reg = ADC_INPUTCTRL_MUXNEG_GND;   // No Negative input (Internal Ground)
+  ADC->INPUTCTRL.reg = ADC_INPUTCTRL_MUXNEG_GND;   // No Negative input (Internal Ground)
 
-	// Averaging (see datasheet table in AVGCTRL register description)
-	ADC->AVGCTRL.reg = ADC_AVGCTRL_SAMPLENUM_1 |    // 1 sample only (no oversampling nor averaging)
-						ADC_AVGCTRL_ADJRES(0x0ul);   // Adjusting result by 0
+  // Averaging (see datasheet table in AVGCTRL register description)
+  ADC->AVGCTRL.reg = ADC_AVGCTRL_SAMPLENUM_32 |    // 1 sample only (no oversampling nor averaging)
+                     ADC_AVGCTRL_ADJRES(0x4ul);   // Adjusting result by 0
 
 	ADC->INPUTCTRL.bit.GAIN = ADC_INPUTCTRL_GAIN_DIV2_Val;
 	ADC->REFCTRL.bit.REFSEL = ADC_REFCTRL_REFSEL_INTVCC1_Val; // 1/2 VDDANA = 0.5* 3V3 = 1.65V
